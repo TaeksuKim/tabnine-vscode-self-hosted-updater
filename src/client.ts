@@ -1,5 +1,5 @@
 import { workspace } from "vscode";
-import Url from "url";
+import * as Url from "url";
 import axios, { AxiosInstance } from "axios";
 
 function proxyUrl(): string | undefined {
@@ -17,7 +17,7 @@ export default function client(selfHostedServerUrl: string): AxiosInstance {
   const url = proxyUrl();
 
   if (url) {
-    const { host, protocol, port } = Url.parse(url);
+    const { hostname: host, protocol, port } = Url.parse(url);
     if (host && protocol && port) {
       axiosClient.defaults.proxy = {
         host,
