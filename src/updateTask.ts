@@ -18,7 +18,7 @@ export default async function updateTask(
   const client = createClient(serverUrl);
   const { data: latestVersion } = await client.get<string>("/version");
 
-  if (!currentVersion || semver.gte(latestVersion, currentVersion)) {
+  if (!currentVersion || semver.gt(latestVersion, currentVersion)) {
     const path = await createTmpFile();
     await downloadUrl(client, `/tabnine-vscode-${latestVersion}.vsix`, path);
     await commands.executeCommand(INSTALL_COMMAND, Uri.file(path));
