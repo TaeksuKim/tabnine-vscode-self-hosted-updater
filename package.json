@@ -1,7 +1,15 @@
 {
+  "publisher": "TabNine",
+  "icon": "small_logo.png",
+  "author": "Tabnine <support@tabnine.com> (https://tabnine.com/)",
+  "license": "License at https://tabnine.com/eula",
+  "galleryBanner": {
+    "color": "#100f11",
+    "theme": "dark"
+  },
   "name": "tabnine-vscode-self-hosted-updater",
   "displayName": "Tabnine Self Hosted Updater",
-  "description": "Tabnine Self Hoster Updater",
+  "description": "Update Tabnine plugin from your self hosted server",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
