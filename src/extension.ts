@@ -5,16 +5,16 @@ import {
   RELOAD_BUTTON_LABEL,
   RELOAD_COMMAND,
 } from "./consts";
-import selfHostedServerUrl from "./selfHostedServerUrl";
+import serverUrl from "./serverUrl";
 import updateTask from "./updateTask";
 
 export async function activate(
   context: vscode.ExtensionContext
 ): Promise<void> {
   try {
-    const serverUrl = await selfHostedServerUrl();
+    const url = await serverUrl();
     const currentVersion = context.globalState.get<string>(CURRENT_VERSION_KEY);
-    void updateTask(serverUrl, currentVersion).then(async (latestVersion) => {
+    void updateTask(url, currentVersion).then(async (latestVersion) => {
       if (
         latestVersion &&
         (await confirm("Tabnine Enterprise updated", RELOAD_BUTTON_LABEL))
@@ -24,7 +24,7 @@ export async function activate(
       }
     });
   } catch (error) {
-    vscode.window.showErrorMessage("Tabnine Enterprise is disabled");
+    vscode.window.showErrorMessage("Tabnine Self Hosted Updater is disabled");
   }
 }
 

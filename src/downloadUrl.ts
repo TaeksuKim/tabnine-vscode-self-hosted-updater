@@ -1,13 +1,14 @@
 import * as fs from "fs";
-import axios from "axios";
+import { AxiosInstance } from "axios";
 
 export default async function downloadUrl(
+  client: AxiosInstance,
   url: string,
   toPath: string
 ): Promise<void> {
   const writer = fs.createWriteStream(toPath);
 
-  const response = await axios({
+  const response = await client({
     url,
     method: "GET",
     responseType: "stream",

@@ -1,5 +1,7 @@
+export const SELF_HOSTED_UPDATER_NAMESPACE = "tabnineSelfHostedUpdater";
+
 export const SELF_HOSTED_SERVER_CONFIGURATION =
-  "tabnineSelfHostedUpdater.tabnineServer";
+  SELF_HOSTED_UPDATER_NAMESPACE + ".tabnineServer";
 
 export const INSTALL_COMMAND = "workbench.extensions.installExtension";
 
@@ -11,4 +13,5 @@ export const UPDATE_BUTTON_LABEL = "Update now";
 
 export const CONFIGURATION_SET_LABEL = "Set now";
 
-export const CURRENT_VERSION_KEY = "tabnineSelfHostedUpdater.currentVersion";
+export const CURRENT_VERSION_KEY =
+  SELF_HOSTED_UPDATER_NAMESPACE + ".currentVersion";

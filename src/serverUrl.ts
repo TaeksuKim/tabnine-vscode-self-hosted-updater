@@ -3,7 +3,7 @@ import { SELF_HOSTED_SERVER_CONFIGURATION } from "./consts";
 
 const configuration = workspace.getConfiguration();
 
-export default async function enterpriseServerUrl(): Promise<string> {
+export default async function serverUrl(): Promise<string> {
   let enterpriseServerUrl = configuration.get<string>(
     SELF_HOSTED_SERVER_CONFIGURATION
   );
@@ -13,7 +13,7 @@ export default async function enterpriseServerUrl(): Promise<string> {
 
   enterpriseServerUrl = await window.showInputBox({
     title: "Tabnine Self Hosted Updater",
-    prompt: "Enter the URL of your self hosted Tabnine server",
+    prompt: "Enter the URL of your Tabnine Self Hosted server",
     placeHolder: "https://tabnine.customer.com",
   });
 
@@ -22,5 +22,5 @@ export default async function enterpriseServerUrl(): Promise<string> {
     return enterpriseServerUrl;
   }
 
-  throw new Error("Tabnine self hosted server url is not set");
+  throw new Error("Tabnine Self Hosted server url is not set");
 }
