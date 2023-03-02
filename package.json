@@ -13,7 +13,7 @@
   "description": "Update Tabnine plugin from your self hosted server",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.50.0"
   },
   "categories": [
     "Other"
