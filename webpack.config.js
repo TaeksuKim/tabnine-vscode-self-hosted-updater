@@ -29,11 +29,6 @@ const config = {
   resolve: {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
     extensions: [".ts", ".js"],
-    alias: {
-      // semver: path.resolve(__dirname, "node_modules/semver"),
-      // axios: path.resolve(__dirname, "node_modules/axios"),
-      // tmp: path.resolve(__dirname, "node_modules/tmp"),
-    },
   },
   module: {
     rules: [
@@ -48,21 +43,11 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new webpack.IgnorePlugin({
-      checkResource: (resource) =>
-        [
-          "osx-temperature-sensor",
-          "@opentelemetry/tracing",
-          "applicationinsights-native-metrics",
-        ].includes(resource),
-    }),
-  ],
   optimization: {
     minimizer: [new TerserPlugin({ extractComments: false })],
   },
 };
 
-module.exports = (env) => {
+module.exports = () => {
   return [config];
 };

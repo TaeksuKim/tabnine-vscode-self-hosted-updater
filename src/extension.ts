@@ -28,4 +28,4 @@ export async function activate(
   }
 }
 
-export async function deactivate() { }
+export async function deactivate() {}
