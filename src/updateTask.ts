@@ -8,6 +8,10 @@ import confirm from "./confirm";
 import { INSTALL_COMMAND, UPDATE_BUTTON_LABEL } from "./consts";
 const createTmpFile = promisify(tmp.file);
 
+/**
+ * Update vsix task
+ * @returns updatedVersion in case of update, otherwise returns null
+ */
 export default async function updateTask(
   enterpriseServerUrl: string,
   currentVersion: string | undefined
