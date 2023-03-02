@@ -1,10 +1,10 @@
-import { window, workspace } from "vscode";
+import { ExtensionContext, window } from "vscode";
 import { SELF_HOSTED_SERVER_CONFIGURATION } from "./consts";
 
-const configuration = workspace.getConfiguration();
-
-export default async function serverUrl(): Promise<string> {
-  let enterpriseServerUrl = configuration.get<string>(
+export default async function serverUrl(
+  context: ExtensionContext
+): Promise<string> {
+  let enterpriseServerUrl = context.globalState.get<string>(
     SELF_HOSTED_SERVER_CONFIGURATION
   );
   if (enterpriseServerUrl) {
@@ -18,7 +18,11 @@ export default async function serverUrl(): Promise<string> {
   });
 
   if (enterpriseServerUrl) {
-    configuration.update(SELF_HOSTED_SERVER_CONFIGURATION, enterpriseServerUrl);
+    context.globalState.update(
+      SELF_HOSTED_SERVER_CONFIGURATION,
+      enterpriseServerUrl
+    );
+
     return enterpriseServerUrl;
   }
 

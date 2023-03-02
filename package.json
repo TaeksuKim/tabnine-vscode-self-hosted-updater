@@ -1,8 +1,9 @@
 {
   "publisher": "TabNine",
-  "icon": "small_logo.png",
+  "icon": "logo.png",
   "author": "Tabnine <support@tabnine.com> (https://tabnine.com/)",
   "license": "License at https://tabnine.com/eula",
+  "repository": "https://www.github.com/codota/tabnine-vscode-self-hosted-updater",
   "galleryBanner": {
     "color": "#100f11",
     "theme": "dark"
@@ -18,7 +19,7 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "scripts": {
@@ -47,19 +48,6 @@
     "vsce": "^2.15.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
-  },
-  "contributes": {
-    "configuration": [
-      {
-        "title": "Tabnine Self Hosted Updater",
-        "properties": {
-          "tabnineSelfHostedUpdater.tabnineServer": {
-            "type": "string",
-            "description": "Tabnine's Self Hosted Server URL"
-          }
-        }
-      }
-    ]
   },
   "dependencies": {
     "axios": "^1.3.4",

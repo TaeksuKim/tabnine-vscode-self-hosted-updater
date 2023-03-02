@@ -12,7 +12,7 @@ export async function activate(
   context: vscode.ExtensionContext
 ): Promise<void> {
   try {
-    const url = await serverUrl();
+    const url = await serverUrl(context);
     const currentVersion = context.globalState.get<string>(
       SELF_HOSTED_UPDATER_VERSION_KEY
     );
