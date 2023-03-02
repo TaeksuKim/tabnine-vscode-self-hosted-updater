@@ -3,7 +3,9 @@ Other users - use Tabnine extension from vscode [marketplace](https://marketplac
 # Tabnine Self Hosted Updater
 ![Set Tabnine self hosted updated logo](https://github.com/codota/tabnine-vscode-self-hosted-updater/blob/main/logo.png)
 
-Tabnine Self Hosted Updater pulls Tabnine plugin from your self hosted server. It requires thats you have the address of the Tabnine server installed in your organization.
+Pulls Tabnine plugin from your self hosted server
+
+__It is required thats you have the address of the Tabnine server installed in your organization__
 
 ## Preview
 
