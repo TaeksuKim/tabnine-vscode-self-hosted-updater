@@ -32,6 +32,18 @@
     "prettier": "prettier --write src/",
     "prettier:check": "prettier --check src/"
   },
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Tabnine Self Hosted Updater",
+        "properties": {
+          "tabnineSelfHostedUpdater.serverUrl": {
+            "type": "string"
+          }
+        }
+      }
+    ]
+  },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/semver": "^7.3.13",

@@ -1,36 +1,41 @@
 import * as vscode from "vscode";
-import confirm from "./confirm";
-import {
-  SELF_HOSTED_UPDATER_VERSION_KEY,
-  RELOAD_BUTTON_LABEL,
-  RELOAD_COMMAND,
-} from "./consts";
+import confirmReload from "./confirmReload";
+import confirmServerUrl from "./confirmServerUrl";
+import { SELF_HOSTED_SERVER_CONFIGURATION } from "./consts";
+import currentVersion from "./currentVersion";
 import serverUrl from "./serverUrl";
 import updateTask from "./updateTask";
+
+async function updateAndReload(
+  context: vscode.ExtensionContext,
+  serverUrl: string
+) {
+  const updatedVersion = await updateTask(
+    serverUrl,
+    await currentVersion(context)
+  );
+  if (updatedVersion) {
+    await currentVersion(context, updatedVersion);
+    await confirmReload("Tabnine Enterprise updated");
+  }
+}
 
 export async function activate(
   context: vscode.ExtensionContext
 ): Promise<void> {
-  try {
-    const url = await serverUrl(context);
-    const currentVersion = context.globalState.get<string>(
-      SELF_HOSTED_UPDATER_VERSION_KEY
-    );
-    void updateTask(url, currentVersion).then(async (latestVersion) => {
-      if (
-        latestVersion &&
-        (await confirm("Tabnine Enterprise updated", RELOAD_BUTTON_LABEL))
-      ) {
-        context.globalState.update(
-          SELF_HOSTED_UPDATER_VERSION_KEY,
-          latestVersion
-        );
-        await vscode.commands.executeCommand(RELOAD_COMMAND);
+  const url = serverUrl();
+
+  if (url) {
+    void updateAndReload(context, url);
+  } else {
+    void confirmServerUrl();
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      if (event.affectsConfiguration(SELF_HOSTED_SERVER_CONFIGURATION)) {
+        const url = serverUrl();
+        if (url) {
+          void updateAndReload(context, url);
+        }
       }
     });
-  } catch (error) {
-    vscode.window.showErrorMessage("Tabnine Self Hosted Updater is disabled");
   }
 }
-
-export async function deactivate() {}
