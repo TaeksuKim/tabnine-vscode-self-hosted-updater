@@ -33,6 +33,12 @@
     "prettier:check": "prettier --check src/"
   },
   "contributes": {
+    "commands": [
+      {
+        "command": "tabnineSelfHostedUpdater.resetState",
+        "title": "Tabnine Self Hosted Updater: Reset state"
+      }
+    ],
     "configuration": [
       {
         "title": "Tabnine Self Hosted Updater",
