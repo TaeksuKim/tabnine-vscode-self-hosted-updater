@@ -1,4 +1,4 @@
-import { commands, Uri } from "vscode";
+import { commands, Uri, window, ProgressLocation } from "vscode";
 import downloadUrl from "./downloadUrl";
 import * as tmp from "tmp";
 import { promisify } from "util";
@@ -22,13 +22,22 @@ export default async function updateTask(
   latestVersion = latestVersion.trim();
 
   if (!currentVersion || semver.gt(latestVersion, currentVersion)) {
-    const path = await createTmpFile();
-    await downloadUrl(
-      client,
-      `${UPDATE_PREFIX}/tabnine-vscode-${latestVersion.trim()}.vsix`,
-      path
+    await window.withProgress(
+      {
+        location: ProgressLocation.Window,
+        cancellable: true,
+        title: "Updating Tabnine plugin",
+      },
+      async () => {
+        const path = await createTmpFile();
+        await downloadUrl(
+          client,
+          `${UPDATE_PREFIX}/tabnine-vscode-${latestVersion.trim()}.vsix`,
+          path
+        );
+        await commands.executeCommand(INSTALL_COMMAND, Uri.file(path));
+      }
     );
-    await commands.executeCommand(INSTALL_COMMAND, Uri.file(path));
     return latestVersion;
   }
 

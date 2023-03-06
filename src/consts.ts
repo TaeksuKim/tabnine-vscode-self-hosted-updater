@@ -17,3 +17,6 @@ export const SELF_HOSTED_UPDATER_VERSION_KEY =
   SELF_HOSTED_UPDATER_NAMESPACE + ".currentVersion";
 
 export const UPDATE_PREFIX = "/update/vscode";
+
+export const RESET_STATE_COMMAND =
+  SELF_HOSTED_UPDATER_NAMESPACE + ".resetState";
