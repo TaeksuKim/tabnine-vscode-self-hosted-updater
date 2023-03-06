@@ -1,20 +1,9 @@
-import { ExtensionContext } from "vscode";
-import { SELF_HOSTED_UPDATER_VERSION_KEY } from "./consts";
+import { Extension, extensions } from "vscode";
+import { EXTENSION_SUBSTRING } from "./consts";
 
-export async function removeCurrentVersion(
-  context: ExtensionContext
-): Promise<void> {
-  await context.globalState.update(SELF_HOSTED_UPDATER_VERSION_KEY, undefined);
-}
-
-export default async function currentVersion(
-  context: ExtensionContext,
-  version?: string
-): Promise<string | undefined> {
-  if (version) {
-    await context.globalState.update(SELF_HOSTED_UPDATER_VERSION_KEY, version);
-    return version;
-  }
-
-  return context.globalState.get(SELF_HOSTED_UPDATER_VERSION_KEY);
+export default function currentVersion(): string | undefined {
+  const tabnineExtension: Extension<unknown> | undefined = extensions.all.find(
+    (x) => x.id.includes(EXTENSION_SUBSTRING) && x.isActive
+  );
+  return (tabnineExtension?.packageJSON as { version: string }).version;
 }

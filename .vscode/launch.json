@@ -1,20 +1,18 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Launch Extension",
-            "type": "extensionHost",
-            "request": "launch",
-            "sourceMaps": true,
-            "runtimeExecutable": "code",
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}",
-                "--logPluginHostCommunication"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
-            ],
-            "preLaunchTask": "npm: compile"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "sourceMaps": true,
+      "runtimeExecutable": "code",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--logPluginHostCommunication"
+      ],
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "preLaunchTask": "npm: compile"
+    }
+  ]
 }

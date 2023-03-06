@@ -20,3 +20,5 @@ export const UPDATE_PREFIX = "/update/vscode";
 
 export const RESET_STATE_COMMAND =
   SELF_HOSTED_UPDATER_NAMESPACE + ".resetState";
+
+export const EXTENSION_SUBSTRING = "tabnine-vscode";
