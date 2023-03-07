@@ -10,8 +10,7 @@ export default async function confirmServerUrl(): Promise<void> {
   if (
     await confirm(
       "Set Tabnine server URL to update Tabnine plugin",
-      CONFIGURATION_SET_LABEL,
-      true
+      CONFIGURATION_SET_LABEL
     )
   ) {
     commands.executeCommand(
