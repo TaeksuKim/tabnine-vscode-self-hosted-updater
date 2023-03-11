@@ -17,7 +17,10 @@ export default async function updateTask(
 ): Promise<string | null> {
   const client = createClient(serverUrl);
   let { data: latestVersion } = await client.get<string>(
-    `${UPDATE_PREFIX}/version`
+    `${UPDATE_PREFIX}/version`,
+    {
+      proxy: false,
+    }
   );
   latestVersion = latestVersion.trim();
 

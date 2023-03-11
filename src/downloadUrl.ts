@@ -12,6 +12,7 @@ export default async function downloadUrl(
     url,
     method: "GET",
     responseType: "stream",
+    proxy: false,
   });
 
   response.data.pipe(writer);
